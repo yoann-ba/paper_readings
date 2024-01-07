@@ -1,0 +1,26 @@
+Are Emergent Abilities of Large Language Models a Mirage?
+Rylan Schaeffer, Brando Miranda, and Sanmi Koyejo
+Computer Science, Stanford University
+
+
+abstract: 
+- interesting to see a topic such as "emergent ability" be tackled with rigorous definitions and statistical tests, all the formulation and definition steps will be important to look at
+- the conclusions on metric choice could be interesting, if broadly applicable, especially if that can generalise to broader principles of high quality reporting/tracking
+
+intro:
+- tying the definition of an emergent ability to the scale of the model is a bit weird, i would be more in favour of simply describing as emergent any ability that is not explicitly optimised for/sought after. Their definition definitely feels a bit too restrictive, as sentences like "CNNs have emergent features rather hand-crafted ones" now suddenly don't have quite the same "emergent" as this definition of "emergent ability". Although if this work is centered on the emergent abilities of LLMs, then focusing on scale does make sense, even if it restricts a bit the discussion, though maybe precising it as "large-scale emergence" could be more accurate.
+- figure 1 sums up the definition as a metric going from a random-level performance to a significantly higher one with a sudden sharp jump, at an unprecitable model scale.
+
+- their hypothesis is that the metrics are nonlinear or deforming w.r.t scale, and that the testing done on smaller models isn't done on enough data
+
+- testing arithmetic tasks on the GPT-3 family, changing accuracy to a linear metric evaporates the emergent aspect of the task, and not changing the metric but adding test data also makes for smoother more predictable lines
+
+- running a meta-analysis on reported emergent abilities of models they don't have access to, when varying the Task x Metric x Model items, they predict to find the emergence tied to the metric and not the task x model pair, which they confirm.
+- of their sources, only 4/39 metrics have emergent abilities, and 2 metrics account for >92% of the claimed emergent abilities, one discontinuous and one nonlinear.
+
+- authors induce emergent abilities into vision tasks where no such abilities have been claimed before, by changing the metrics
+
+- 
+
+- for a fixed task and model family, the researcher can choose a metric to create an emergent ability, as these are creations of the researcher's choices and not a fundamental property of the model x task pair. LLMs may be able to display emergent abilities but previously claimed ones might likely be a mirage.
+- 
