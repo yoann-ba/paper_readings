@@ -1,0 +1,26 @@
+ClimSim: A large multi-scale dataset for hybrid physics-ML climate emulation
+by a lot of people from a lot of places
+
+abstract: 
+- inaccurate and imprecise predictions of critical processes such as storms
+- present dataset designed for hybrid ML-physics research
+- 5.7 billion pairs of input/output vectors, need to see details to understand what of
+- global coverage, multiple years, high sampling frequency
+- 
+
+introduction:
+- "Current climate simulators have a typical smallest resolvable scale of 80–200 km, equivalent to the size of a typical U.S. county. However, accurately representing cloud formation requires a resolution of 100 m or finer"
+- large-scale resolved inputs (temperature, wind velocity), larce-scale outputs (changes in wind, moisture, temperature) that occur due to unresolved small-scale physics
+- dataset for traning ML emulators of atmospheric storms, clouds, turbulence, rainfall, radiation for use in hybrid-ML climated simulations
+- developed to lower the barriers to entry for ML experts
+- 
+
+2: 
+- "ClimSim’s comprehensive variable coverage is unprecedented, including all variables needed to couple to and from a land system simulator and enforce physical constraints." 
+- 
+
+3: 
+- 124 channel input, 128 channel output
+- 60 slices of temperature, 60 slices of humidity + 4 mono-layer variables as input, and same disproportion in output with heating tendency and moistening tendency making up 120 layers, followed by 8 mono-layers variables
+- can be expanded to 617 dim input and 369 outputs
+- 
