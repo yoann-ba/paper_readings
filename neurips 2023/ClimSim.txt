@@ -23,4 +23,28 @@ introduction:
 - 124 channel input, 128 channel output
 - 60 slices of temperature, 60 slices of humidity + 4 mono-layer variables as input, and same disproportion in output with heating tendency and moistening tendency making up 120 layers, followed by 8 mono-layers variables
 - can be expanded to 617 dim input and 369 outputs
+- can be reshaped into 617 x 21600 inputs -> 368 x 31600 outputs because the grid cell locations aren't quite images (lower dimensionality that a rectilinear grid)
+- 5.7B high-quality samples, 100M low-resolution samples
 - 
+
+4:
+- test out a ResNet, a tiny fully connected encoder-decoder, a Heteroskedastic Regression, an MLP, a Randomized Prior Network, a cVAE
+- in the CNN they repeat the global variables at every vertical level
+- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
