@@ -1,0 +1,11 @@
+article on OpenAI’s approach to alignment https://aligned.substack.com/p/alignment-optimism
+
+OpenAI alignment of LLMs through instruction (InstructionGPT) https://openai.com/research/instruction-following
+
+Alignment Research Center https://www.alignment.org/
+
+Eliciting Latent Knowledge (made by ARC) https://www.eleuther.ai/projects/elk
+
+Alignment Forum for paper/report discussion https://www.alignmentforum.org/ 
+
+OpenAI debate between 2 AIs to explain their reasoning to a human judge https://openai.com/research/debate

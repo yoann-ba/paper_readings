@@ -1,0 +1,106 @@
+# 2020 — Article on Self-Supervision
+https://amitness.com/2020/02/illustrated-self-supervised-learning/
+
+Overview and explanations of self supervision. Refers to a 2019 Survey paper on Self-Supervision for Visual Features.
+
+----
+
+# 2019 — Survey paper on Self-Supervision
+Paper mentioned in above article. https://arxiv.org/abs/1902.06162
+
+Details terminology, problem formulations, many methods and the self-supervision techniques that are relevant for them.
+
+Massive amount of work (method studied, large summary tables).
+
+----
+
+# 2020 — Article on Semi-Supervision
+https://amitness.com/2020/03/fixmatch-semi-supervised/
+
+Explanation of one semi supervision method : FixMatch. Refers to the associated paper.
+
+look for a survey on semi supervision
+
+----
+
+# 2020 — Big Self-Supervised Models are Strong Semi-Supervised Learners
+Paper https://arxiv.org/abs/2006.10029
+
+Looked great.
+
+unsupervised + supervised training mix > full supervised in some cases
+
+trains on big models then distills them
+
+new SotA on imagenet
+
+re-tag better?
+
+----
+
+# 2021 — Article + Paper on SIMCLR, Contrastive Learning
+Article https://medium.com/analytics-vidhya/contrastive-learning-in-computer-vision-brief-concept-overview-and-sample-code-787c9038e809
+
+Paper	https://arxiv.org/abs/2002.05709
+
+PwC summary https://paperswithcode.com/method/simclr#:~:text=SimCLR%20is%20a%20framework%20for,loss%20in%20the%20latent%20space.
+
+Details the working of SIMCLR.
+
+“learns representations by maximizing agreement between differently augmented views of the same data example via a contrastive loss.”
+
+re-tag better?
+look for a survey on contrastive learning
+look for a survey on adversarial learning
+
+----
+
+# 2020 — How Well Do Self-Supervised Models Transfer?
+Paper https://arxiv.org/abs/2011.13377
+
+Summary in First part of https://medium.com/flyreelai/6-cant-miss-papers-from-cvpr-2021-7b9c8ea31201
+
+Evaluates the transfer performance of 13 top self-supervised models on 40 diverse downstream tasks, including many-shot and few-shot recognition, object detection, and dense prediction, while comparing them to supervised feature learning.
+
+----
+
+# 2021 — Toyota : Self-Supervision in depth + paper
+Toyota Research Institute
+
+Article https://medium.com/toyotaresearch/self-supervised-learning-in-depth-part-1-of-2-74825baaaa04
+
+Actually not a very long article.
+
+Takes the example of the use case of monocular depth estimation
+
+References a few papers for important steps, including one of theirs
+
+Paper https://arxiv.org/abs/1810.01849
+
+“We show that high resolution is key towards high-fidelity self-supervised monocular depth prediction.”
+
+“We propose a sub-pixel convolutional layer extension for depth super-resolution that accurately synthesizes high-resolution disparities from their corresponding low-resolution convolutional features.”
+
+“We introduce a differentiable flip-augmentation layer.”
+
+----
+
+# 2021 — “SEER”: Facebook, Self-Supervision on Computer Vision
+Blog post https://ai.facebook.com/blog/seer-the-start-of-a-more-powerful-flexible-and-accessible-era-for-computer-vision/
+
+Long article that describes a paper
+
+“new billion-parameter self-supervised computer vision model that can learn from any random group of images on the internet — without the need for careful curation and labeling that goes into most computer vision training today”
+
+“SEER’s performance demonstrates that self-supervised learning can excel at computer vision tasks in real-world settings. This is a major breakthrough that ultimately clears the path for more flexible, accurate, and adaptable computer vision models in the future.”
+
+----
+
+# 2021 — Yann LeCun, Self-Supervised learning blog post
+Blog post https://ai.facebook.com/blog/self-supervised-learning-the-dark-matter-of-intelligence
+
+Long article by Yann LeCun that presents the field of Self supervised learning and details a lots of things
+
+>> Good shit, to prioritize over the rest of this section
+
+re-tag better?

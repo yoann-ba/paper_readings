@@ -1,0 +1,7 @@
+OpenAI site article, example of applying RLHF to text summarization https://openai.com/research/learning-to-summarize-with-human-feedback
+
+OpenAI paper, first paper on RLHF? applied to Atari games https://arxiv.org/abs/1811.06521#
+
+OpenAI paper, first work on RLHF for LLMs? https://arxiv.org/abs/1909.08593
+
+all OpenAI papers/articles on RLHF https://openai.com/research?topics=human-feedback

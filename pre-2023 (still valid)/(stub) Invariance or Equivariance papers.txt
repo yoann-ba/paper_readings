@@ -1,0 +1,7 @@
+ https://arxiv.org/pdf/2203.14486.pdf equivariant graph network on point cloud data, helixonai (protein folding) people
+
+ Harmonic Networks: Deep Translation and Rotation Equivariance http://visual.cs.ucl.ac.uk/pubs/harmonicNets/index.html Rotation equivariance convolutions, more data efficient and better acc on top of the rotation robustness
+
+ Making Convolutional Networks Shift-Invariant Again https://richzhang.github.io/antialiased-cnns/ re-making cnn translation invariant, more data efficient and better acc on top of the translation robustness
+
+[1802.08219] Tensor field networks: Rotation- and translation-equivariant neural networks for 3D point clouds https://arxiv.org/abs/1802.08219 tensor fields, rotation, translation and PERMUTATION equivariance, spherical harmonics, bases on SchNet and Harmonic Networks

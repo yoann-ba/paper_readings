@@ -1,0 +1,10 @@
+Sergey AF-cluster - Prediction of multiple conformational states by combining sequence clustering with AlphaFold2
+
+paper https://www.biorxiv.org/content/10.1101/2022.10.17.512570v1.full#F7
+
+Process : 
+
+Do a normal MSA search on the query sequence
+Cluster the MSA lines by sequence distance alignment (by DBSCAN)
+Re-build a small cropped MSA for each custer and run one AF inference per cluster
+Some of the results that have high confidence are different conformations

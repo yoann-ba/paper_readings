@@ -1,0 +1,25 @@
+# 2015 — Original GAN paper
+Goodfellow
+
+Paper https://arxiv.org/abs/1406.2661
+
+Introduces Generative Adversarial Networks. Introduces Adversarial Training in General.
+
+Details in Intro and Related Work some of the previous alternatives and their issues. 
+
+Details in Section 6 and 7 Avantages, Disadvantages and future upgrade directions.
+
+Goes hard on the theoretical math in the middle.
+
+----
+
+# 2020 — Multi Scale Gradient GAN
+Paper https://arxiv.org/pdf/1903.06048v4.pdf
+
+Adapts GANs to fix some of their main inherent issues through having skip connections in between different levels of scale (4x4, 16x16, …, 1024x1024), similarly to a U-Net.
+
+Long Introduction that reflects on the impact of the first paper, and the trends and patterns where GANs excel or fail.
+
+Mentions a lot of alternative GAN improvements that popped up over the years. Tries adapting some of them to their new idea when applicable.
+
+Thorough analysis of Quality, Training Stability and Robustness to Learning Rate in Section 3.

@@ -1,0 +1,9 @@
+paper https://arxiv.org/pdf/2108.07258.pdf
+
+very long discussion paper, nothing technical
+
+discusses the paradigm shift of modern AI around models such as BERT, DALLE, GPTs, +++
+
+Introduction is a great read for anyone remotely interested in AI with its modern framing of the history of AI
+
+Otherwise take a look at the detailed table of contents on page 2 and pick the topics that interest you (capabilities, applications, technology, societal impact & ethics, conclusion)

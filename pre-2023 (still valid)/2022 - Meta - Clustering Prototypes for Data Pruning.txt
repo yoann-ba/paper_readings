@@ -1,0 +1,11 @@
+paper https://arxiv.org/pdf/2206.14486v1.pdf
+
+third party article that describes the paper https://medium.com/geekculture/meta-ais-shocking-insight-about-big-data-and-deep-learning-857f9f2b9ac5 (ignore the shit title)
+
+> "perform k-means clustering in the embedding space of an ImageNet pre-trained self-supervised model (here: SWaV [31]), and define the difficulty of each data point by the distance to its nearest cluster centroid, or prototype. Thus easy (hard) examples are the most (least) prototypical."
+
+> "force alignment between clusters (unsupervised) and classes (supervised). They took all the samples of the class and averaged out the embeddings"
+
+> "developed a new simple, cheap and scalable self-supervised pruning metric that demonstrates comparable performance to the best supervised metrics"
+
+> Most other prior methods required label information (training of some models, and estimating the difficulty of each sample from the predictions), this method is unsupervised and so doesn’t

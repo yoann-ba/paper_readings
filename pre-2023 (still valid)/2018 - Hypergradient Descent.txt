@@ -1,0 +1,7 @@
+https://arxiv.org/pdf/1703.04782.pdf
+
+dynamically modifies the value of the learning rate of an optimizer based on a gradient compute from the objective function in relation to the learning rate itself (on top of the usual backprop). surprisingly simple addition and always works at least a bit better/faster
+
+implementations in pytorch https://github.com/gbaydin/hypergradient-descent and tensorflow https://github.com/zadaianchuk/HyperGradientDescent of Adam and SGD (modified to work with Hypergradient Descent)
+
+much more robust as to the initial learning rate, can leave the hyperlearning rate as a low value (lower = closer to default optimizer)

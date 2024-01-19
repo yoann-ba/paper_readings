@@ -1,0 +1,10 @@
+2018 — PIRM Challenge on Perceptual SR report
+Paper 2018 PIRM Challenge on Perceptual Image Super-resolution https://openaccess.thecvf.com/content_ECCVW_2018/papers/11133/Blau_2018_PIRM_Challenge_on_Perceptual_Image_Super-resolution_ECCVW_2018_paper.pdf
+
+Paper written as a report on the results of a Super Resolution challenge.
+
+Details the trends in the submissions, the novelties. Lots of comparisons between the submitted models.
+
+>> Provides a study of existing metrics and indexes in relation to the actual human perceptual quality of an image reconstruction, and proposes an index highly-correlated metric.
+
+> “PIRM is therefore the first established benchmark for perceptual-quality driven image restoration, which will hopefully be extended to other perceptual computer-vision tasks in the future”

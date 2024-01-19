@@ -1,0 +1,8 @@
+OpenAI DALL-E  / DALL-E 2
+(Imagen, Parti)
+MidJourney
+Stable Diffusion
+
+Steins articles : 
+- https://medium.com/@steinsfu/diffusion-model-clearly-explained-cd331bd41166
+- https://medium.com/@steinsfu/stable-diffusion-clearly-explained-ed008044e07e

@@ -1,0 +1,48 @@
+Uni-Fold: An Open-Source Platform for Developing Protein Folding Models beyond AlphaFold
+
+Paper :  https://www.biorxiv.org/content/10.1101/2022.08.04.502811v3.full
+Code :  https://github.com/dptech-corp/Uni-Fold
+
+They reimplemented AlphaFold and AlphaFold-Multimer in the PyTorch framework, and reproduced their from-scratch training processes with equivalent or better accuracy
+
+⇒ Uni-Fold achieves about 2.2 times training acceleration compared with AlphaFold
+⇒ Uni-Fold outperforms AlphaFold-Multimer by approximately 2% on the TM-Score
+
+The inconveniences of AlphaFold : 
+
+The current open-source code of AlphaFold does not contain any training scripts or utilities of the model
+The code of AlphaFold is based on JAX framework, which is limited to a community currently much smaller than TensorFlow and PyTorch
+The original AlphaFold was designed and trained on Google Tensor Processing Unit (TPU), which is hardly accessible to the majority of the research community
+
+⇒ Uni-Fold supports the training and inference of both monomeric and multimeric models with high accuracy and efficiency
+
+Concerning their methods, they upgraded some alphaFold processes like :
+
+For protein homology : 
+
+Genetic search
+Cross-chain genetics
+Template search
+
+They altered the model and loss functions of the AlphaFold (-Multimer) :
+
+ReLU activation ⇒ Gaussian Error Linear Units (GELUs)
+They added a postprocessing layer to the output of OuterProductMean module in AlphaFold
+They enhanced the auxiliary heads by adding an activation function
+
+Acceleration techniques : 
+
+Mixed precision training : partial or whole calculations of the model is conducted in half-precision to save time and memory
+Operator fusion : merge multiple consecutive operators into one
+Memory-efficient inference : AlphaFold splits the input tensor into multiple small chunks along one dimension and sequentially forwards the chunks
+Per-sample gradient clipping displays a significant advantage
+They adopted the self-distillation strategy of AlphaFold
+
+Metrics : 
+
+For monomer evaluations : TM score
+For multimer evaluations : they adapted single-chain metrics to assemblies
+
+⇒ On both monomer and multimer tasks, Uni-Fold Multimer significantly outperformed AlphaFold-Multimer on RMSD and TM-Score
+
+Uni-Fold v2 contained a reproduction of from-scratch training of AlphaFold (-Multimer too), it supports both training and inference.

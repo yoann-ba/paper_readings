@@ -1,0 +1,81 @@
+paper 
+https://www.frontiersin.org/articles/10.3389/fbinf.2022.959160/full
+
+by Bjorn Wallner, 3rd place in CASP 15 multimeric, also part of the DockQ paper in 2016
+
+----
+
+> “Up to 40% of protein-protein interactions are considered peptide-protein interactions, with many of these responsible for vital functions such as cell life-cycle regulation (Lee et al., 2019). These are interactions between a protein and a smaller peptide fragment, sometimes referred to as short linear motif (SLiM), which can be part of a disordered region of a larger protein. Because peptide fragments display a high degree of flexibility and are often disordered when unbound, investigating the molecular details of such interactions, and even identifying direct interaction at all, has been difficult both from an experimental and computational point of view.”
+
+> “It is now possible to achieve highly accurate protein structure prediction on par with experimental accuracy for many proteins—58% of human proteins, for example, can be modeled accurately (Tunyasuvunakool et al., 2021). As a comparison, the previously experimentally determined structures of human proteins had 17% accuracy.”
+
+> “Activating dropout layers also at inference would force a network to utilize alternative learned solutions that might be unused or drowned out when the entire network retains all its features, tapping into the alternative learned solutions at the cost of predictive power.”
+
+> “we demonstrate that AlphaFold-Multimer, which has been so successful in the prediction of complexes of globular structures, can also be used to advance the field of peptide-protein complex modeling and interaction prediction. Without any modifications, AlphaFold-Multimer performs much better than state-of-the-art on both peptide-protein complex modeling and interaction prediction. We also show that AlphaFold can be improved by randomly perturbing the neural network weights to force it to sample a larger variety of conformations. By generating a large pool of models and using the excellent scoring function in AlphaFold, it is possible to select much better models than the default setting.”
+
+> “A negative set was created for peptide-protein interaction prediction in the same manner as in Lei et al. (2021) by randomly pairing 560 peptides and protein receptors from the positive set, creating a negative set five times larger than the positive. Although randomly pairing proteins is no guarantee of lack of interaction, the resulting false negative rate will be statistically insignificant, especially considering that the proteins hail from different species”
+
+> “This scheme results in a dataset which can be used to both evaluate the docking performance on the positive set as well as be used for benchmarking the capacity to predict whether peptide-protein pairs interact or not. Both the positive and negative sets are available as Supplementary Data.”
+
+> “The models were ranked by the ranking_confidence score and rank 1 was selected. ranking_confidence is a linear combination of the interface score ipTM (interface predicted Template Modeling score) and overall structural score pTM: 0.8ipTM + 0.2pTM.”
+
+> “In all cases, AlphaFold was run without the final relaxation step using Amber to save computational time.”
+
+> “The DockQ program was used to assess the quality of docked peptide-protein complexes” (LRMSD, iRMSD, f_nat)
+
+> “The benchmark was performed on a redundancy-reduced version of a recently published dataset of peptide-protein interactions” (one complex representative per ECOD family)
+
+> “This clearly indicates that AlphaFold is much better than previously existing methods.”
+
+> “AlphaFold-Multimer version 2.2.0 does produce more structures by default, sampling some nearby conformations”
+
+> “Of the different versions of AlphaFold-Multimer tested, the versions with access to the larger databases (full_dbs) are consistently superior. However, running AlphaFold without template information seems better than running it with template information, especially when also run with a reduced database size. Previous work has shown that, although AlphaFold is fully capable of accurately judging the quality of structures derived from template information without any MSA information at all, it cannot efficiently sample the folding landscape without MSAs; if given template information with no MSA information, AlphaFold will essentially copy the template (Roney and Ovchinnikov, 2022).”
+
+> “As the peptides are small in size, finding significant sequence matches is difficult and their parts of the paired MSAs often have a low number of effective sequences. This, in combination with the fact that the performance loss when including templates is greater when smaller databases are used for MSA construction, implies that, when run on peptide-protein complexes, the protocol will become over-reliant on using templates to sample starting positions; it ought in such cases to be run without templates.”
+
+> “Overall, the best AlphaFold-Multimer can predict at least an acceptable model for 68/112 (61%) complexes, while the AlphaFold-Multimer with least information (AFmulti-reduced_dbs) still produces 61/112 (54%) acceptable models.”
+
+> “Firstly, the number of recycling steps was incrementally increased from the default three to explore AlphaFold’s own ability to improve its sampling by refining its predictions. Secondly, the dropout layers used during AlphaFold training were activated at inference and the network was run several times with different random seeds, producing many structures for final comparison and evaluation.”
+
+> “The improvement increases most rapidly for the first 25 structures per network model (5 network models × 25 structures each = 125 total) but, for most settings, there is a small but steady increase in DockQ all the way up to 200 structures (5 × 200 = 1,000 total).”
+
+> “The optimal number of recycles is 21 for v1 and nine for v2. In contrast to dropout, although increasing the recycles does increase performance, the increase does not continually improve with additional recycles. Rather, there are optimal values found within the range sampled rather than at the minimum or maximum values investigated. Increasing the number of recycles permits AlphaFold to spend more cycles refining the same few structures toward its perceived energy minimum. One reason for the slight reduction in performance with recycles increased beyond their optimal values could be that, beyond these many recycles, the refinement of the peptide conformations starts to converge too much and the few output samples will be locked into local energy minima.”
+
+> “combining dropout with increased recycles seems to restore the ranking performance in terms of the correlation of AlphaFold-Multimer version 2.2.0 back up to correlation R of 0.71.” + scatter plot of correlation between ranking confidence and DockQ
+
+> “Note, however, that there is still a substantial gap in median DockQ-score for selected models and best models generated (Figure 3
+), indicating that AlphaFold generates much better models than its scoring function is able to recognize and that there is potential to improve the method by improving the model quality assessment of the generated structures.”
+
+> [part 3.3 on selective drop out, no interesting perf application-wise but draws some insights from it regardless?]
+
+> “Version 2.1.0 performs better at high numbers of recycles and when the structure module is not subjected to dropout. Version 2.2.0, on the other hand, seems to require dropout in all layers to perform optimally, and a generally lower number of recycles is better.”
+
+> “At this point, it seems as though the correlation between ranking score and DockQ is more important than the median model quality of the models generated, as models are already generated with a far higher quality than that selected (Figure 7B).”
+
+> “While the performance of AlphaFold-Multimer, especially with the improvements described in this study, is far above the template-based method InterPep2, both AlphaFold-Multimer and InterPep2 have scores that correlate well with DockQ. In addition, AlphaFold-Multimer does not use its templates for the multimer interaction but only for folding the individual chains. Thus, if AlphaFold-Multimer is uncertain in its prediction, it is possible that a template for the interaction found by InterPep2 can be used.”
+
+> “The results for the AlphaFold + InterPep2 combo predictor for peptide-protein docking can be found in Figure 7. The performance increase from including InterPep2 is surprisingly substantial, raising the median DockQ from 0.562 to 0.604, even though InterPep2 by itself produces models with a much lower median DockQ than all AlphaFold versions tested.”
+
+> “when looking at the best models sampled for the best combination methods, they all reach median DockQ scores in excess of 0.7. However, the final selected models have median DockQ scores of only up to 0.6 in the case of the very best combination. Conformations of higher quality are obviously sampled but are not selected by the predicted score, indicating yet again that, when running AlphaFold with dropout, a remaining challenge is model ranking.”
+
+> [part 3.5]
+
+> “In general, pairs that bind are scored higher than non-binders across all methods.” (score as in AF self confidence, the ranking score)
+
+> [PRC to analyse, can get a 100% - 18% and a 90% - 22%]
+
+> [bootstrap correlation for the PR-AuC to understand then analyse]
+
+> […]
+
+> “In fact, in 50% of cases where the AFmulti-v2_full_dbs_dropout_recycle9+IP2 method produced an improved model of at least acceptable quality while AFmulti-v2_full_dbs_dropout_recycle9 alone failed, the AlphaFold model positioned the peptide close to or at the correct binding site but in the wrong direction.”
+
+> “In 33% of improved cases, AlphaFold positioned the peptide at the binding site of a non-peptide binding partner, either for a co-factor or another protein chain (dimerization site, for instance). AlphaFold seems able to model the receptor protein regardless of the presence of any other binding chains or co-factors (Jumper et al., 2021; Tunyasuvunakool et al., 2021). However, as is evident from these examples, the absence of other binding partners and co-factors from the AlphaFold-Multimer modeling seems to result in a negative bias on the docking performance. Co-factors and other binders being absent from a complex seems to have less effect on the performance of the purely template-based method InterPep2, perhaps explaining in part why it is a good complement to AlphaFold-Multimer.”
+
+> “We have shown that AlphaFold-Multimer achieves state-of-the-art performance in both peptide-protein docking and peptide-protein interaction prediction without modification. Most interesting, however, is the discovery that forcing increased sampling of the conformational space by increasing the number of recycles of the final layers of the network or adding dropout at inference and running the protocol several times can significantly improve the performance of AlphaFold.”
+
+> “The improvement median DockQ score when using the improved sampling strategy is dramatic, from 0.40/0.42 to 0.55/0.53 for AlphaFold-Multimer versions v1 and v2, respectively. By combining both versions v1 and v2, it possible to raise the median DockQ to 0.56; adding a template-based method (InterPep2) for complexes where AlphaFold produces low confidence predictions raises the median DockQ as high as 0.60.”
+
+> “It should be noted that the improved sampling protocol presented here is not limited to the peptide-protein docking problem and should be useful in many AlphaFold applications. Examples are, for investigating multiple stable conformations, for larger and more difficult targets, or for larger assemblies. Additionally, more variations in the application of dropout at inference could be investigated, such as different rates of dropout.”
+
+> “Finally, while the improvements presented here are significant, there is still a large gap between the quality of the best model generated and the one ranked highest by AlphaFold’s predicted score. As such, protein model quality assessment remains an important field of research in protein structure prediction with AlphaFold.”

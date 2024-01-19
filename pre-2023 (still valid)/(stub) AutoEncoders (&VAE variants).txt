@@ -1,0 +1,3 @@
+explanatory article https://towardsdatascience.com/intuitively-understanding-variational-autoencoders-1bfe67eb5daf 
+
+examples with code https://blog.keras.io/building-autoencoders-in-keras.html

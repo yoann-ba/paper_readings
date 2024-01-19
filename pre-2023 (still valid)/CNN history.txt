@@ -1,0 +1,156 @@
+# Original LeCun CNN — 1999
+
+Paper http://yann.lecun.com/exdb/publis/pdf/lecun-99.pdf
+
+The first CNN (or one of the first), could be interesting to read to see where some ideas and concepts come from.
+
+Could be interesting to see what other algorithms were common or SotA at the time, and the conclusion Le Cun comes to.
+
+(Yann Le Cun is an important figure in DL research to this day, most papers with his name on them have a high chance of being interesting.)
+
+----
+
+# Original AlexNet CNN — 2012
+Paper https://proceedings.neurips.cc/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf
+
+The first big deep CNN to be trained on ImageNet. Introduction mentions previously used CNNs, Image Dataset issues common at the time.
+
+Section 3 and 4 detail adding ReLu activation, Data Augmentation, Drop Out.
+
+----
+
+# Original VGG — 2014
+Paper https://arxiv.org/abs/1409.1556
+
+Investigates the effect on increasing depth and reducing kernel size on deep CNN.
+
+A known, often mentioned CNN architecture, somewhat considered the “default” : small kernel sizes, pooling without overlap, fully-connected layers at the end.
+
+2 years after AlexNet, the Introduction already shows a good measure of reflecting back on its impact and the start of the growth of research in using CNNs for Deep Learning.
+
+----
+
+# 2015 — "ResNet" Deep Residual Learning for Image Recognition
+Microsoft Research
+Kaiming He, Xiangyu Zhang, Shaoqing Ren, Jian Sun
+
+paper https://arxiv.org/abs/1512.03385
+
+>= Good, Only a quick look but I know the topic.
+
+An important step in the evolution of Conv Nets, put here for educational purposes.
+
+Simple enough to be a good read for anyone having learned about the theory behind fitting deep networks, and the linked issues.
+
+----
+
+# 2016 — "DenseNet" Densely Connected Convolutional Networks
+Gao Huang, Zhuang Liu, Laurens van der Maaten, Kilian Q. Weinberger
+
+paper https://arxiv.org/abs/1608.06993
+
+>= Good, Only a quick look but I know the topic.
+
+An important step in the evolution of Conv Nets, put here for educational purposes.
+
+Interesting to see how far ago it seems, and how new the domain still felt when reading the intro while knowing about the massive, very intricate models that 
+
+followed the DenseNets.
+
+Sort of “Res Net on steroids” except we’re concatenating instead of summing the arrays coming out of different channels.
+
+----
+
+# 2020 — EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks
+Google Research, Brain Team
+Mingxing Tan, Quoc V. Le
+
+paper https://arxiv.org/abs/1905.11946
+
+Great, Read
+
+Discusses existing ways of scaling up Conv Nets (e.g width, depth, channels...).
+
+Proposes new method to scale up Conv Nets starting from a small design, automatically.
+
+Proposes their own new Conv Net architecture (using some NAS), and scales it up with their method.
+
+Reaches State of the Art with a massive parameter nb reductions.
+
+> Already in Keras, as pre-trained on ImageNet
+
+----
+
+# 2021 — EfficientNetV2: Smaller Models and Faster Training
+Google Research, Brain Team
+Mingxing Tan, Quoc V. Le
+
+paper https://arxiv.org/abs/2104.00298
+
+git https://github.com/google/automl/tree/master/efficientnetv2
+
+Other https://towardsdatascience.com/complete-architectural-details-of-all-efficientnet-models-5fd5b736142
+
+Great, Only read a quick overview. Great sources and references throughout.
+
+Follow-up to EfficientNet.
+
+More advanced NAS for a better base ConvNet architecture.
+
+Progressive training (adaptive Data Augmentation).
+
+Beats the best Vision Transformers at the time, and the NFNets, that had both beaten EfficientNet v1.
+
+----
+
+# 2022 — ConvNeXt : A ConvNet for the 2020s
+FAIR, UC Berkeley
+
+paper https://arxiv.org/abs/2201.03545
+
+git https://github.com/facebookresearch/ConvNeXt 
+
+ViTs have beaten ConvNets before, but they had some issues and so CNN priors were introduced as a part of some ViTs (e.g SWIN Tansformers).
+
+They start from a classic ResNet and iteratively “modernize” it to fit with the design of a Swin-like ViT, ending with a high performance pure CNN called ConvNeXt that reaches high (/SotA) performance.
+
+"Without the ConvNet inductive biases, a vanilla ViT model faces many challenges in being adopted as a generic vision backbone.” “Hierarchical Transformers employ a hybrid approach to bridge this gap.”
+
+“Swin Transformer [45] is a milestone work in this direction, demonstrating for the first time that Transformers can be adopted as a generic vision backbone and achieve state-of-the-art performance across a range of computer vision tasks beyond image classification. Swin Transformer’s success and rapid adoption also revealed one thing: the essence of convolution is not becoming irrelevant; rather, it remains much desired and has never faded.”
+
+“[…] a ConvNet already satisfies many of those desired properties, albeit in a straightforward, no-frills way. The only reason ConvNets appear to be losing steam is that (hierarchical) Transformers surpass them in many vision tasks, and the performance difference is usually attributed to the superior scaling behavior of Transformers, with multi-head self-attention being the key component.”
+
+“Our exploration is directed by a key question: How do design decisions in Transformers impact ConvNets’ performance?”
+
+“ConvNeXt maintains the efficiency of standard ConvNets, and the fully-convolutional nature for both training and testing makes it extremely simple to implement.”
+
+Design modifications
+Training procedure : 
+- “Apart from the design of the network architecture, the training procedure also affects the ultimate performance.”
+- “The training is extended to 300 epochs from the original 90 epochs for ResNets. We use the AdamW optimizer [46], data augmentation techniques such as Mixup [90], Cutmix [89], RandAugment [14], Random Erasing [91], and regularization schemes including Stochastic Depth [36] and Label Smoothing [69].”
+
+Macro design : 
+- “adjust the number of blocks in each stage from (3, 4, 6, 3) in ResNet-50 to (3, 3, 9, 3)”
+- “replace the ResNet-style stem cell [downsampling at the start] with a patchify layer implemented using a 4×4, stride 4 convolutional layer”
+
+ResNeXt-ify : 
+- “we use depthwise convolution, a special case of grouped convolution where the number of groups equals the number of channels” (grouped convolution : n_g filters that convolve in parallel, but each filter can only see dims/n_g channels, e.g 2 groups, one filter sees first half depthwise and other the back half)
+- “We note that depthwise convolution is similar to the weighted sum operation in self-attention, which operates on a per-channel basis, i.e., only mixing information in the spatial dimension. The combination of depthwise conv and 1 × 1 convs leads to a separation of spatial and channel mixing, a property
+shared by vision Transformers, where each operation either mixes information across spatial or channel dimension, but not both.”
+- this is more efficient so they increase the number of channels from 64 to 96
+
+Inverted bottleneck : 
+- transformer blocks have a small - large - small shape in dimensions. Somehow applying this to the CNN reduces FLOPs and slightly increases performance.
+
+Large kernel sizes : 
+- 7 x 7 kernel size is best, when used in a specific pattern in relation to the inverted bottleneck 
+
+Micro design : 
+- swap ReLU with GELU, no change in accuracy
+- Transformers have fewer activation function calls than a ResNet, so they remove 2 of the 3 calls in each ResNet block
+- Transformers have fewer normalisation calls, they remove 2 of the 3 per block
+- LayerNorm instead of BatchNorm, Transformers use BatchNorm, simply doing BN → LN on a base ResNet is detrimental, but doing it here with the other modifications is an upgrade
+
+“It is worth noting that all design choices discussed so far are adapted from vision Transformers. In addition, these designs are not novel even in the ConvNet literature — they have all been researched separately, but not collectively, over the last decade. Our ConvNeXt model has approximately the same FLOPs, #params., throughput, and memory use as the Swin Transformer, but does not require specialized modules such as shifted window attention or relative position biases.”
+
+“Compared with ViTs/Swin Transformers, ConvNeXts are simpler to fine-tune at different resolutions, as the network is fully-convolutional and there is no need to adjust the input patch size or interpolate absolute/relative position biases.”

@@ -1,0 +1,80 @@
+paper https://arxiv.org/pdf/2209.09125.pdf
+
+discussion and interviews of Machine Learning Engineers on the developement and production of a ML project
+
+----
+
+- 90% of ML models don’t make it to the production
+- It is unclear why MLOps is hard
+
+- ML engineers (MLE) perform 4 tasks :
+- - Data collection
+- - Experimentation
+- - Evaluation & deployment
+- - Monitoring and response
+
+- 3 variables dictates the success for a production ML deployment :
+- - Velocity : ML is so experimental by nature, we want to be able to prototype and iterate ideas (trained models) very quickly.
+- - Validation : monitor pipelines for bugs
+- - Versioning : store and manage multiple version of production models and datasets for querying, debugging, and minimizing production pipeline downtime.
+
+- Common MLOps practices :
+- - MLEs are very experimental in nature ( so many versions of the same model)
+- - MLEs like to invest significant resources to get test dataset and metric that are interesting and variant
+- - Non ML rules and human in the loop practices keep models reliable in production
+
+- MLOps challenges :
+- - the need to manage data provenance and training context for model debugging purposes
+- - handling state and ensuring reproducibility while using computational notebooks
+
+- strategies for experimental MLE in production :
+- - collaboration with others
+- - iterate on the data not the model can result in faster velocity
+- - kill ideas with minimal gain in early stages to avoid wasting time
+- - small changes over large changes ⇒ change a config file of parameters instead of directly editing a pyython model training script, support a config-driven developpement
+
+Evaluation of models : 
+- validation datasets need to be more dynamic, they need to be as similar to live data as possible, it can be useful for problems like low accuracy for a specific label 
+- another strategy : they create a new dataset for offline validation based on every failed prediction (they store them in a queue and review them with an analysts so that they can look for data like this failed batch)
+- not only you fix the bug when you check user recorded bug, but you change the data based on those bugs too
+- new strategy : standardize evaluation scripts but can create a tension beatween velocity and validation
+- spread a deployment across multiple stages, and evaluate at each stage ( you deploy code that goes through stage deployment process : test clusters, stage 1 clusters, stage 2 clusters, global deployment)
+there are multiples names for the stages and different number of stages. But one is particular : the shadow stage where predictions were generated live but not surfaced to users. ⇒ shadow mode
+- ML evaluation metrics should be tied to product metrics ⇒ should be tying model perf to the business’s KPIs.
+
+Strategies to sustain model perf post deployment :
+- create new versions : frequently retrain on and label live data; retraining the model every day (cadence may change) so model performance would not suffer for longer than a day ⇒ prevent model from getting stale : https://iterative.ai/blog/stale-models. Maybe have a team to collect nex labeled data or annotate live data and use them to fine-tune models  
+- maintain old versions as fallback models (either old ones or a simple one)
+- Maintain layers of heuristics : they create some sort of filters that were like a heuristic layer on top that detects anomalies based on domain knowledge. (example : chatbot mentions time, which he is not sure of)
+- not only model’s parameters should be validated but we have to check the features and predictions too before deploying to full production. We can create several metrics  (monitor completeness, check common sense…) 
+- Keep  it simple : some use tree-based models over DL models 
+- on-call processes for supervising production ML models : ML engineer would be responsible for a model, receive a ticket for a bug, place it in a queue, the MLE would create an incident report (for each bug) about the bug and how they fixed it. Could assign priority to tickets.
+- Service Level Objectives : commitment to minimum standards of performance. (for example, a model to classify images has to be 95% accurate, if not, it is broken by definition).
+
+----
+
+Pain points in production ML
+- mismatch between dev and prod env : Creating similar development and production environments exposes a tension between velocity and validating early
+- - Data leakage : training model on different data compared to the ones used in the prod env for predictions
+- - Jupyter notebook : conflicting opinions on the use of notebooks. Some use it in both env because it’s similar, collaborative and allows to run a single block of the pipeine, while others strongly disliked the use, encouraging to train models in the cloud. The company need to know what is the priority and choose if they want to use notebooks because they support high velocity and having similar dev and prod env prenvents having new bugs but they have to keep in mind that it’s easy to make mistakes in notebooks, use wrong inputs, copy-paste in prod env and so on…
+- - Non-standardized Code Quality : and they say that code review is not that useful (tikes so much time to find minor errors) 
+
+- Handling a spectrum of data errors : hard → soft → drift. 
+- - Hard errors : bad predictions due to obvious errors like  negative age 
+- - Soft errors : reasonable predictions (so hard to catch) due to like few null-valued features
+- - Drift errors : occur when the live data is from a seemingly different distribution than the training set
+- - Another issue : They manually defined constraints on data quality ( like an interval) so it is not sustainalble if the employees leave the company.
+- - another issue : false-positives. Engineers automated schema checks and bounds to catch hard errors, and they tracked distance metrics between historical and live features to catch soft and drift errors. number of metrics tracked so large ⇒ proba that at least one column violates constraints is high 
+- - for alerts (on bugs), they ignored them 90% of the time but they had to be aware that smt is happening. The internal tool they had looks for different metrics during the on-call process. If an alert has been populaed 1000 times and was ignored 45% of the time, they decide whether to fix it or not
+- - issue 3 : creating meaningful data alerts : schema checks and such doesn’t flag all the errors and the distance metrics create a lot of false-positive alerts. It is due to :
+feedback delay : live predictions can get a ground truth label with a delay (somtimes, you don’t get it). Maybe develop a human in the loop pipeline to help label live data as frequently as possible.
+ unnatural and natural data drifts 
+⇒ takeaway is that any function that summarizes data—be it cleaning tools, preprocessors, features, or models—needs to be refit regularly
+
+- Ad-hoc approach to debugging : they have no framework to help, they keep trying till they figure it out
+
+- ML bugs don’t get caught by test, they are silent errors which manifests in slight reduction of performance. ⇒ Code review can help detect if something went wrong. 
+
+- multi staged deployments take forever : the stage of deployemtn would take a long time to observe meaningful results
+
+- Advice : Focus on one idea rather than parrralleling different ideas

@@ -1,0 +1,5 @@
+paper https://arxiv.org/pdf/1609.02907.pdf
+
+2 parts article, good GCN algo explanation + numpy code for example 
+- Getting the Intuition of Graph Neural Networks | by Inneke Mayachita | Analytics Vidhya | Medium https://medium.com/analytics-vidhya/getting-the-intuition-of-graph-neural-networks-a30a2c34280d 
+- Understanding Graph Convolutional Networks for Node Classification | by Inneke Mayachita | Towards Data Science https://towardsdatascience.com/understanding-graph-convolutional-networks-for-node-classification-a2bfdb7aba7b

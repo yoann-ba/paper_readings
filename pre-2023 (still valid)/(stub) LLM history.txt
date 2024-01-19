@@ -1,0 +1,19 @@
+OpenAI GPT 1-2-3
+BERT
+
+2020 — “GPT 3” Language Models are Few-Shot Learners
+Paper https://arxiv.org/abs/2005.14165
+
+Incredible amount of people credited on one research paper.
+
+~40-60 page document.
+
+Studies Transfer Learning, and Few-Shot Learning, and how scaling up a language model interacts. “Scaling up language models greatly improves task-agnostic, few-shot performance, sometimes even reaching competitiveness with prior state-of-the-art fine-tuning approaches.”
+
+Trains an auto-regressive language model with 175 B parameters.
+
+Applied to translation, question-answering, and cloze tasks, as well as several tasks that require on-the-fly reasoning or domain adaptation, such as unscrambling words, using a novel word in a sentence, or performing 3-digit arithmetic.
+
+Discusses Limitations, Misuse of language models, Fairness, bias and representation issues and Energy usage.
+
+Just Introduction + Approach and Limitations + Conclusion should already be very interesting.

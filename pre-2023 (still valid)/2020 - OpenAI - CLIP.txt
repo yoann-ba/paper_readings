@@ -1,0 +1,22 @@
+paper https://arxiv.org/abs/2103.00020
+code https://github.com/openai/CLIP
+
+
+> Trains to match images with the right textual caption (Contrastive Learning part). Then uses the two jointly-learned encoders to encode new text classes (”a photo of a {new_class}”) and new image classes and compute the distance between the two embeddings, choosing the lowest distance as the best match (Zero Shot Learning part).
+
+> Perhaps not the first work on contrastive learning but a very influencial and referenced paper
+
+> Also showcases quite well the multi-task / general approach, as the jointly-learned encoders fit in the contrastive (pre-)training can then be used for many tasks that involves a text-image pair
+
+# 2021 — OpenAI, CLIP
+Blog post https://openai.com/blog/clip/ (has link to paper)
+
+Very powerful, zero-shot learning, blog post details zero-shot learning very well, lots of examples.
+
+Trained on a wide variety of images with a wide variety of natural language supervision that’s abundantly available on the internet.
+
+Can be instructed in natural language to perform a great variety of classification benchmarks, without directly optimizing for the benchmark’s performance, similar to the “zero-shot” capabilities of GPT-2 and GPT-3.
+
+Becomes as good as SotA on easy data, but maintains the same performance on hard data where it destroys task-specific learning.
+
+Low data, generalizes well on many tasks and high “real world” performance.

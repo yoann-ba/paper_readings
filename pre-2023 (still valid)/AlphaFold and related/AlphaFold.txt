@@ -1,0 +1,80 @@
+AF2 paper (2021) https://www.nature.com/articles/s41586-021-03819-2
+
+AlphaFold 2 open source repo https://github.com/deepmind/alphafold
+
+AlphaFold 2 official colab https://colab.research.google.com/github/deepmind/alphafold/blob/main/notebooks/AlphaFold.ipynb#scrollTo=jeb2z8DIA4om , uses no templates, for full multimer accuracy it is highly recommended to run AlphaFold locally. 
+
+ColabFold, community notebook https://colab.research.google.com/github/sokrypton/ColabFold/blob/main/AlphaFold2.ipynb#scrollTo=G4yBrceuFbf3 , Sequence alignments/templates are generated through MMseqs2  and HHsearch , might be much faster than the official colab, paper at https://www.nature.com/articles/s41592-022-01488-1
+
+AlphaFold 1 paper (2019, CASP 13) https://discovery.ucl.ac.uk/id/eprint/10089234/1/343019_3_art_0_py4t4l_convrt.pdf
+
+AlphaFold video https://www.youtube.com/watch?v=gg7WjuFs8F4
+
+AF2 on human proteome https://www.nature.com/articles/s41586-021-03828-1
+
+AF2 supplementary https://static-content.springer.com/esm/art%3A10.1038%2Fs41586-021-03819-2/MediaObjects/41586_2021_3819_MOESM1_ESM.pdf
+
+----
+
+#### AlphaFold 1 ####
+
+State of the Art
+
+"The most successful free modelling approaches so far have relied on fragment assembly to determine the shape of the protein of interest. ”In these approaches a structure is created through a stochastic sampling process, such as simulated annealing, that minimises a statistical potential derived from summary statistics extracted from structures in the Protein Data Bank”
+“In recent years, structure prediction accuracy has improved through the use of evolutionary covariation data found in sets of related sequences. ”Sequences similar to the target sequence are found by searching large datasets of protein sequences derived from DNA sequencing and aligned to the target sequence to make a multiple sequence alignment (MSA).”
+“Several methods have been used to predict the probability that a pair of residues is in contact based on features computed from MSAs”
+“Previous work has made predictions of the distance between residues, particularly for distance geometry approaches.”
+
+AF1
+
+“The neural network predicts the entire L × L distogram based on MSA features” + distances between the beta carbons
+Minimise the potential by gradient descent, greedy algorithm
+“The neural network predictions include backbone torsion angles and pairwise distances between residues.”
+“Distance predictions provide more specific information about the structure than contact predictions and provide a richer training signal for the neural network. Predicting distances, rather than contacts as in most prior work, models detailed interactions rather than simple binary decisions. By jointly predicting many distances, the network can propagate distance information respecting covariation, local structure and residue identities to nearby residues. The predicted probability distributions can be combined to form a simple, principled protein-specific potential. We show that with gradient descent, it is simple to find a set of torsion angles that minimise this protein-specific potential using only limited sampling.”
+fit some kind of spline with a gradient descent (lbfgs) to predict the structure from the distogram, didn’t understand how
+
+----
+
+#### AlphaFold 2 ####
+
+State of the Art
+
+“The development of computational methods to predict three-dimensional (3D) protein structures from the protein sequence has proceeded along two complementary paths that focus on either the physical interactions or the evolutionary history.” 
+“The physical interaction programme heavily integrates our understanding of molecular driving forces into either thermodynamic or kinetic simulation of protein physics or statistical approximations thereof. Although theoretically very appealing, this approach has proved highly challenging for even moderate-sized proteins due to the computational intractability of molecular simulation, the context dependence of protein stability and the difficulty of producing sufficiently accurate models of protein physics.” 
+“The evolutionary programme has provided an alternative in recent years, in which the constraints on protein structure are derived from bioinformatics analysis of the evolutionary history of proteins, homology to solved structures and pairwise evolutionary correlations. This bioinformatics approach has benefited greatly from the steady growth of experimental protein structures deposited in the Protein Data Bank (PDB), the explosion of genomic sequencing and the rapid development of deep learning techniques to interpret these correlations.”
+
+AF2
+
+“incorporating novel neural network architectures and training procedures based on the evolutionary, physical and geometric constraints of protein structures”
+“jointly embed multiple sequence alignments (MSAs) and pairwise features, a new output representation and associated loss that enable accurate end-to-end structure prediction, a new equivariant attention architecture, use of intermediate losses to achieve iterative refinement of predictions, masked MSA loss to jointly train with the structure, learning from unlabelled protein sequences using self-distillation and self-estimates of accuracy”
+“directly predicts the 3D coordinates of all heavy atoms for a given protein using the primary amino acid sequence and aligned sequences of homologues as inputs”
+“The key innovations in the Evoformer block are new mechanisms to exchange information within the MSA and pair representations that enable direct reasoning about the spatial and evolutionary relationships.”
+“structure module that introduces an explicit 3D structure in the form of a rotation and translation for each residue of the protein (global rigid body frames)”
+“Key innovations in this section of the network include breaking the chain structure to allow simultaneous local refinement of all parts of the structure, a novel equivariant transformer to allow the network to implicitly reason about the unrepresented side-chain atoms and a loss term that places substantial weight on the orientational correctness of the residues.”
+
+Evoformer module
+
+rip details
+
+Structure module
+
+Starts with residues at origin position, identity rotation, then iterate
+stop the prediction at the residue level, get corresponding atomic positions and compute loss at the atom level
+works with 3x3 rotation matrix and 3x1 position vector for a point (residue and atom?)
+
+
+48 evoformer blocks, each can return a ‘current prediction’ of the structure. the same structure can be ‘recycled’ a few times to help its prediction converge
+
+“We hypothesize that the MSA information is needed to coarsely find the correct structure within the early stages of the network, but refinement of that prediction into a high-accuracy model does not depend crucially on the MSA information.”
+
+----
+
+#### AlphaFold 2 Supplementary ####
+
+1.2.5 : selection filters on the training data (length, clustering…)
+1.2.9 + Table 1 : all features : huge inputs
+1.3 : self distillation : ?, expanding the dataset somehow, for some reason?
+Recycling/Looping main algos from the input of Evoformer blocks > Structure blocks > loop back
+1.4 - 1.7 : main details, oof, complicated. lots of small transition/transformation operations in between blocks, lots of ambiguous/vague operations
+1.8 structure module and reconstruction + geometry computations/transformations/post process
+1.9.6 pLDDT confidence metric : 

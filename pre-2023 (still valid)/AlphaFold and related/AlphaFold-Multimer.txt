@@ -1,0 +1,42 @@
+Evans, R. et al. Protein complex prediction with AlphaFold-Multimer. Preprint at bioRxiv
+ https://doi.org/10.1101/2021.10.04.463034
+
+> On AlphaFold (AF2) : “To summarize briefly, it combines information from the amino acid sequence, multiple sequence alignments and homologous structures in order to predict the structure of individual protein chains. The core part of the neural network, called Evoformer, consists of a neural representation of the multiple sequence alignment (MSA) and pairwise relations between the different amino acids in the protein. These two representations are mixed and processed by a collection of neural network modules. The pair representation can be thought of as containing information about the relative positions of amino acids in the chain. This representation is used to predict the relative distances between the amino acids in the chain via a binned distance distribution (distogram). The first row of the MSA embedding is then used together with the pair embedding to predict the final structure.”
+
+> one MSA built per chain
+
+> clamp the loss at different values (intra chain : 10 A°, inter chain : 30 A°)
+
+> additional loss term for inter chain position
+
+> balancing loss functions : “These factors were found by looking at the gradient magnitude of the different terms and setting values such that the gradients coming from violation losses would not dominate over the gradients coming from FAPE.”
+
+> the pTM confidence score is adapted to work on multiple chains, focusing on the interfaces : “modified to score interactions between residues of different chains, since we are predominantly interested in the accuracy of interfaces”
+
+> “The top 3 entrants of CASP14 Multimers — Baker-experimental [19], Venclovas [20] and Takeda-Shitaka lab [21] — all used methodologies based on these approaches. Takeda-Shitaka used a purely template-based approach, whilst Baker-experimental and Venclovas used a combination of template-based and free-docking.” “Baker-experimental additionally employed a deep learning based system to infer inter-chain contacts from co-evolution information”
+
+> “A key aspect of the AlphaFold model is its ability to learn to identify residue conservation and co-evolution directly from the MSA. Such an ability has also been shown to be a useful factor for predicting protein-protein interactions [25, 26].”
+
+> multi-chain MSA : “We follow the approach of Zhou et al. [12] by pairing by species label, disambiguating using similarity to the target sequence.”
+
+> “We benchmarked AlphaFold-Multimer on two datasets: Benchmark 2 from [2], and Recent-PDB-Multimers.”
+
+> compares AF-Multimer with : AF with a link, AF with a gap, AF to create 2 structures then ClusPro docking, same but cluspro result fed back into AF for refining, 
+
+> ClusPro << AF with link/gap << AF-Multimer
+
+> “We benchmarked AlphaFold-Multimer on two datasets: Benchmark 2 from [2], and Recent-PDB-Multimers.”
+
+> performance is particularly better than other options on the heteromers rater than the homomers, so for us
+
+> good viz figure 3 : scatter plot transformed into violin plot for clarity
+
+> fig 6 : AlphaFold-Multimer used as a mono chain predictor is less accurate than base AF2 but predicting a complex makes the two chains each more accurate separately than base AF2. “We can see that in the case of heteromers AlphaFold-Multimer is less accurate than AlphaFold when given the single chains with incorrect monomer stoichiometry, but is more accurate than AlphaFold when the single chains are predicted as part of the full complex.”
+
+> “We have not yet implemented multimer templates or self-distillation of multimer predictions, so there is also likely substantial scope for future accuracy improvements.”
+
+> “As a limitation, we observe anecdotally that AlphaFold-Multimer is generally not able to predict binding of antibodies and this remains an area for future work.”
+
+> “we uniformly sample a chain cluster, then uniformly sample a chain within that cluster and select the mmCIF to which it belongs as input to the pipeline. The chain clusters are 40% identity clusterings of the Protein Data Bank with MMSeqs2”
+
+> method and algo details in supplementary / section 7 (post process, alignment for evaluation, residue cropping, 

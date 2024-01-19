@@ -1,0 +1,17 @@
+Stanford 2021, cs244n Stanford CS224N: Natural Language Processing with Deep Learning | Winter 2021 - YouTube https://www.youtube.com/playlist?list=PLoROMvodv4rOSH4v6133s9LFPRHjEmbmJ
+
+Stanford 2021, cs244u Natural Language Understanding https://www.youtube.com/playlist?list=PLoROMvodv4rPt5D0zs3YhbWSZA8Q_DyiJ
+
+Stanford 2017, cs231n Lecture Collection | Convolutional Neural Networks for Visual Recognition (Spring 2017) - YouTube https://www.youtube.com/playlist?list=PL3FW7Lu3i5JvHM8ljYj-zLfQRF3EO8sYv
+
+> Stanford CS224W: Machine Learning with Graphs https://www.youtube.com/playlist?list=PLoROMvodv4rPLKxIpqhjhPgdQy7imNkDn
+
+> Stanford CS230: Deep Learning | Autumn 2018 - YouTube https://www.youtube.com/playlist?list=PLoROMvodv4rOABXSygHTsbvUz4G_YQhOb
+
+> Stanford CS229: Machine Learning Full Course taught by Andrew Ng | Autumn 2018 - YouTube https://www.youtube.com/playlist?list=PLoROMvodv4rMiGQp3WXShtMGgzqpfVfbU
+
+> Stanford CS221: Artificial Intelligence: Principles and Techniques | Autumn 2019 - YouTube https://www.youtube.com/playlist?list=PLoROMvodv4rO1NB9TD4iUZ3qghGEGtqNX
+
+> Stanford CS234: Reinforcement Learning | Winter 2019 - YouTube https://www.youtube.com/playlist?list=PLoROMvodv4rOSOPzutgyCTapiGlY2Nd8u
+
+> Stanford CS330: Deep Multi-Task and Meta Learning - YouTube https://www.youtube.com/playlist?list=PLoROMvodv4rMC6zfYmnD7UG3LVvwaITY5
